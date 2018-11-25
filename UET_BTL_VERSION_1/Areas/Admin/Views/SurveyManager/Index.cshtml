@@ -1,0 +1,133 @@
+﻿@model IEnumerable<UET_BTL.Model.Entities.ContentSurvey>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 class="header" style="font-weight:bold;color:blue;">Danh sách các tiêu chí đánh giá</h2>
+
+<p>
+    <button class="btn btn-primary" id="add-button">Thêm tiêu chí mới và xóa dữ liệu cũ</button>
+</p>
+
+<div class="content-teacher">
+    <div class="table-responsive">
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr class="btn-primary">
+                    <th>STT</th>
+                    <th>
+                        Tiêu chí đánh giá
+                    </th>
+                    <th>Tùy chỉnh</th>
+                </tr>
+            </thead>
+            <tbody style="color: blue; background: #b2d7cfd6;">
+                @{ int i = 0; }
+                @foreach (var item in Model)
+                {
+                    i = i + 1;
+                    <tr class="table-striped">
+                        <td>
+                            @i
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Text)
+                        </td>
+                        <td>
+                            <a class="btn btn-warning edit-survey" id="@item.ContentSurveyID">Sửa</a>
+                            <a href="#" class="btn btn-danger delete-ContentSurvey" id="@item.ContentSurveyID">Xóa</a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="class-content-clone" style="display:none">
+    <table>
+        <tr class="table-striped">
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+
+<div class="delete-survey-form">
+    <div class="add-tab">
+        <div class="header-tab">
+            <h5 class="text-center">Xóa tiêu chí đánh giá</h5>
+        </div>
+        <div class="information-content  table-responsive">
+            <form action="#">
+                <table class="table  ">
+
+                    <tr>
+                        <td>Tên tiêu chí</td>
+                        <td><input name="Text" type="text" disabled class="input-information name" value="" maxlength="200" id="DsurveyName" required=""></td>
+                    </tr>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td style="text-align:left;">
+                                <div class="bottom-button">
+                                    <a class='btn btn-danger btn-delete'>Xóa</a>
+                                </div>
+                                <div class="bottom-button">
+                                    <a class='btn btn-success btn-cancle'>Hủy</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </form>
+
+        </div>
+
+    </div>
+</div>
+<div class="create-survey">
+    <div class="add-tab">
+        <div class="header-tab">
+            <h5>Thêm mới tiêu chí</h5>
+        </div>
+        <div class="information-content  table-responsive">
+            <form id="addSurvey">
+                <table class="table  ">
+                    <tr>
+                        <td colspan="2" style="color:red;font-size:15px;font-weight:bold"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><input name="Text" data-toggle="tooltip" data-placement="bottom" title="Tên tiêu chí không được trùng trong hệ thống" type="text" class="input-information input2 name" value="" maxlength="200" id="surveyName" required=""></td>
+                    </tr>
+                    <tbody>
+                        <tr>
+
+                            <td style="text-align:center" colspan="2">
+                                <div class="bottom-button">
+                                    <a href="#" class="btn btn-success btn-submit">Thêm mới</a>
+                                </div>
+                                <div class="bottom-button">
+                                    <a href="#" class="btn btn-danger btn-close" id="studentCancel">Hủy bỏ</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <input type="text" name="idContentSurvey" id="idContentSurvey" hidden />
+
+            </form>
+
+        </div>
+
+    </div>
+</div>
+@section scripts
+{
+    @Scripts.Render("~/survey/js")
+}

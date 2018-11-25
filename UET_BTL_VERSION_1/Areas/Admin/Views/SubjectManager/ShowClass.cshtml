@@ -1,0 +1,67 @@
+﻿
+@model IEnumerable<UET_BTL.Model.Entities.StudentDetail>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 style="font-weight:bold;color:blue;">
+    Danh sách lớp môn học @Html.DisplayFor(model => model.FirstOrDefault().Subject.Name)
+    @Html.DisplayFor(model => model.FirstOrDefault().Subject.SubjectCode)
+</h2>
+<h3>Giảng viên:  @Html.DisplayFor(model => model.FirstOrDefault().Teacher.Name)</h3>
+
+
+
+<div class="content-teacher">
+    <div class="table-responsive">
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr class="btn-primary">
+                    <th>STT</th>
+                    <th>Họ và tên</th>
+                    <th>Mã sinh viên</th>
+                    <th>Ngày sinh</th>
+                    <th>Khóa học</th>
+                    <th>Email</th>
+                    <th>Tùy chọn</th>
+                </tr>
+            </thead>
+            <tbody style="color: blue; background: #b2d7cfd6;">
+                @{ int i = 0; }
+                @foreach (var item in Model)
+                {
+                    i = i + 1;
+                    var leng = item.Student.DateOfBirth.ToString().Length;
+                    var date = leng > 21 ? item.Student.DateOfBirth.ToString().Substring(0, 10) : item.Student.DateOfBirth.ToString().Substring(0, 9);
+                    <tr class="table-striped">
+                        <td>
+                            @i
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Student.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Student.StudentCode)
+                        </td>
+                        <td>
+                            @date
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Student.Course)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Student.Email)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Kết quả đánh giá", "ResultSurveyEveryStudent", new { id = item.StudentDetailID }, htmlAttributes: new { @class = "btn btn-primary" })
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+

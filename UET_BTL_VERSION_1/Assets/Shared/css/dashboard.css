@@ -1,0 +1,254 @@
+h2 {
+    text-transform: uppercase;
+}
+
+.navbar {
+    margin-bottom: 0px;
+    border-radius: 0px;
+}
+
+.padding-hori-0 {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.items {
+    margin: 0 10px;
+}
+
+.review-quantity .thumbnail {
+    background-color: #D44844;
+    height: 180px;
+    width: 100%;
+}
+
+.teacher-quantity .thumbnail {
+    background-color: #236AA1;
+    height: 180px;
+    width: 100%;
+}
+
+.student-quantity .thumbnail {
+    background-color: #D8DB5C;
+    height: 180px;
+    width: 100%;
+}
+
+.online-quantity .thumbnail {
+    background-color: #877575;
+    height: 180px;
+    width: 100%;
+}
+
+.list-group {
+    height: 90vh;
+    border-right: 1px solid #ddd;
+    margin-bottom: 0px;
+}
+
+.list-group {
+    border: none;
+}
+
+    .list-group .list-group-item {
+        border-radius: 0px;
+        border-right: 0px;
+        cursor: pointer;
+        background: #8fb8dc;
+        padding-top: 25px;
+        padding-bottom: 25px;
+        text-transform: uppercase;
+    }
+
+a.list-group-item {
+    color: #100000;
+}
+
+.content-dashboard {
+    margin: 0 20px;
+}
+
+hr {
+    margin-top: 0px;
+}
+
+.items .glyphicon {
+    color: #fff;
+    top: 50%;
+    position: absolute;
+    right: 0px;
+    font-size: 65px;
+    width: 100px;
+}
+
+.thumbnail {
+    text-transform: uppercase;
+    font-size: 30px;
+}
+
+    .thumbnail p {
+        color: #fff;
+    }
+
+p.result {
+   
+    padding: 0;
+    text-align: center;
+    border-radius: 50%;
+    margin-top: 19px;
+    width: 85px;
+    height: 50px;
+    line-height: 50px;
+    opacity: 0.7;
+    font-size: 65pt;
+    margin-left: -15px;
+}
+
+.arrow-right {
+    position: absolute;
+    float: right;
+    right: 6px;
+    top: 38%;
+}
+
+.notification {
+    color: #fff;
+    height: 20px;
+    padding-top: 15px;
+    font-size: 20px;
+}
+
+@media screen and (max-width: 990px) {
+    .list-group {
+        height: 100%;
+    }
+}
+
+.menu-trang li {
+    display: inline;
+}
+
+.menu-trang {
+    text-align: center;
+}
+
+* {
+}
+
+a.navbar-brand {
+    color: white;
+}
+
+button.btn.btn-default {
+    background: #efe66f;
+}
+
+.input-search {
+    margin-top: 20px;
+    border: 1px solid blue;
+}
+
+.Active {
+    background: blue;
+    color: white;
+}
+
+
+/*---------------------start ajax create-student -----------------*/
+.create-student, .create-teacher,
+.create-survey, .delete-teacher-form, 
+.delete-student-form, .delete-subject-form, .delete-survey-form {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: #80808082;
+    z-index: 999;
+    display: none;
+}
+
+.add-tab {
+    /*display: none;*/
+    position: fixed;
+    margin: 0 auto;
+    min-width: 39vw;
+    height: auto;
+    z-index: 2;
+    top: 100px;
+    left: 30vw;
+    color: #000000;
+    background-color: #86ecf1;
+    border: 5px solid #e60b7b;
+    border-radius: 5px;
+    padding: 5px 7px 0 7px;
+}
+
+.input-information {
+    border: none;
+    border-radius: 0px;
+    padding-left: 11px;
+    height: 28px;
+    border-bottom: 1px solid #3F51B5;
+    width: 100%;
+}
+
+    .input-information:focus {
+        outline: none;
+    }
+
+.border-red {
+    border:2px solid red;
+}
+.bottom-button{
+    display:inline-block;
+}
+.header-tab h5 {
+    margin: 0;
+    padding: 0;
+    font-size: 28px;
+    height: 38px;
+    line-height: 38px;
+    color: #0c0cc3;
+}
+.header-tab {
+    background: #1cea24;
+    padding: 0;
+    margin: -5px -7px 0px -7px;
+    text-align: center;
+    height: 38px;
+    border-bottom: 1px solid #7c2c0f;
+}
+
+.input-information + .tooltip > .tooltip-inner {
+    background-color: #ec152c;
+    color: #fff;
+    border: 4px solid #ffeb3b;
+    padding: 4px;
+    font-size: 13px;
+    text-align: left;
+    border-radius: 7px;
+}
+/*---------------------------------------*/
+
+body {
+    background: #56cc4f;
+}
+
+td {
+    vertical-align: middle !important;
+    cursor:pointer;
+    text-align:center;
+    font-size:15px;
+}
+th{
+    text-align:center;
+}
+input[type="radio"] {
+    font-size: 30px;
+    width: 33px;
+    height: 40px;
+    margin: 0px;
+    padding: 0px;
+    cursor:pointer;
+}

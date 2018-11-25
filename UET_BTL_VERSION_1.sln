@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UET_BTL_VERSION_1", "UET_BTL_VERSION_1\UET_BTL_VERSION_1.csproj", "{3946B54E-C209-4E2A-8AD1-BFD312571A57}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UET_BTL.Model", "UET_BTL.Model\UET_BTL.Model.csproj", "{FE7B0C9C-99FA-4D6B-8755-F2AA023BED38}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3946B54E-C209-4E2A-8AD1-BFD312571A57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3946B54E-C209-4E2A-8AD1-BFD312571A57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3946B54E-C209-4E2A-8AD1-BFD312571A57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3946B54E-C209-4E2A-8AD1-BFD312571A57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE7B0C9C-99FA-4D6B-8755-F2AA023BED38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE7B0C9C-99FA-4D6B-8755-F2AA023BED38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE7B0C9C-99FA-4D6B-8755-F2AA023BED38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE7B0C9C-99FA-4D6B-8755-F2AA023BED38}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D990022C-CBB7-4659-A95A-81F5B0F18372}
+	EndGlobalSection
+EndGlobal

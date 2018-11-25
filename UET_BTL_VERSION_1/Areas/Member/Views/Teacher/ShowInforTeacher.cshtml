@@ -1,0 +1,68 @@
+﻿@model UET_BTL.Model.Entities.Teacher
+
+@{
+    ViewBag.Title = "ShowInforTeacher";
+    Layout = "~/Areas/Member/Views/Shared/_LayoutCommon.cshtml";
+}
+<br /><br />
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <form>
+            <fieldset>
+                <legend>Thông tin chung</legend>
+            </fieldset>
+            
+            <div class="form-group row">
+                <label for="studentName" class="col-2 col-form-label">Họ và tên</label>
+                <div class="col-10">
+                    <input class="form-control" type="text" readonly="" value="@Model.Name" id="studentName">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="studentEmail" class="col-2 col-form-label">Email</label>
+                <div class="col-10">
+                    <input class="form-control" type="email" readonly="" value="@Model.Email" id="studentEmail">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="studentClass" class="col-2 col-form-label">Tên đăng nhập</label>
+                <div class="col-10">
+                    <input class="form-control" type="text" readonly="" value="@Model.UserName" id="studentClass">
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-1 col-lg-1"></div>
+
+    <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+
+        <fieldset>
+            <legend>Đổi mật khẩu</legend>
+        </fieldset>
+        <form action="/Member/Teacher/ShowInforTeacher" method="post">
+            <div class="form-group row">
+                <label for="studentPassword" class="col-2 col-form-label">Mật khẩu cũ</label>
+                <div class="col-10">
+                    <input class="form-control" type="password" value="" name="passOld" id="studentPassword" required>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="studentNewPassword" class="col-2 col-form-label">Mật khẩu mới</label>
+                <div class="col-10">
+                    <input class="form-control" type="password" value="" name="passNew1" id="studentNewPassword" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="studentReNewPass" class="col-2 col-form-label">Gõ lại mật khẩu</label>
+                <div class="col-10">
+                    <input class="form-control" type="password" value="" name="passNew2" id="studentReNewPass" required>
+                </div>
+            </div>
+            <button class="btn btn-primary">Lưu thay đổi</button>
+            <h4 style="color:red">@ViewBag.Message</h4>
+        </form>
+    </div>
+</div>

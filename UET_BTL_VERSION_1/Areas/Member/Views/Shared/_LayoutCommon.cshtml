@@ -1,0 +1,54 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/bootstrap/css")
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="navbar navbar-inverse" role="navigation">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">@Session["fullname"]</a>
+                    </div>
+                    <div class="collapse navbar-collapse navbar-ex1-collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="/SignIn/Home/Logout">Đăng xuất </a>
+                            </li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div>
+            </nav>
+        </div>
+    </div><!-- end-navbar-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 padding-hori-0">
+                <div class="list-group">
+                    @Html.Action("MenuPartial", "Home", new { area = "SignIn" })
+                </div>
+            </div><!--end-left-menu-->
+            <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 ">
+                <div class="content-dashboard">
+                    @RenderBody()
+                </div>
+            </div><!--end-main-dashboard-->
+        </div>
+    </div><!-- end-body-page-->
+    <hr>
+    @Scripts.Render("~/bootstrap-jquery/js")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h2 style="font-weight:bold;color:blue">Trang chủ</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+        <div class="row">
+            <div class="review-quantity items">
+                <a href="" class="thumbnail">
+                    <div class="col-xs-6">
+                        <p>Đánh giá</p>
+                        <p style="font-weight:bold" class="result">@ViewBag.SumSurveys</p>
+                    </div>
+                    <div class="col-xs-6 glyphicon glyphicon-file">
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+        <div class="row">
+            <div class="teacher-quantity items">
+                <a href="" class="thumbnail">
+                    <div class="col-xs-6">
+                        <p>Sinh viên</p>
+                        <p style="font-weight:bold" class="result">@ViewBag.SumStudents</p>
+                    </div>
+                    <div class="col-xs-6 glyphicon glyphicon-education">
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+        <div class="row">
+            <div class="student-quantity items">
+                <a href="" class="thumbnail">
+                    <div class="col-xs-6">
+                       
+                        <p>Số lớp</p>
+                        <p style="font-weight:bold" class="result">@ViewBag.SumSubjects</p>
+                    </div>
+                    <div class="col-xs-6 glyphicon glyphicon-blackboard">
+
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+        <div class="row">
+            <div class="online-quantity items">
+                <a href="" class="thumbnail">
+                    <div class="col-xs-6">
+                        <p>Người online</p>
+                        <p style="font-weight:bold" class="result">@ViewBag.SumUserOnline</p>
+                    </div>
+                    <div class="col-xs-6 glyphicon glyphicon-user">
+
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+

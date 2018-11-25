@@ -1,0 +1,95 @@
+﻿@model UET_BTL.Model.Entities.StudentDetail
+
+@{
+    Layout = null;
+    Layout = "~/Areas/Member/Views/Shared/_LayoutCommon.cshtml";
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <h4 style="font-size: 20px;color: #21087f;">Tên môn học: @Model.Subject.Name  @Model.Subject.SubjectCode</h4>
+    <h4 style="font-size: 20px;color: #21087f;">Số tín chỉ: @Model.Subject.CreditNumber</h4>
+    <h4 style="font-size: 20px;color: #21087f;">Tên giảng viên: @Model.Teacher.Name</h4>
+
+    @if (ViewBag.Message != null)
+    {
+        <h1>@ViewBag.Message</h1>
+    }
+    else
+    {
+        using (Html.BeginForm())
+        {
+            <div class="row">
+
+                <table class="table">
+                    <thead style="background: blue;color: white;font-size: 20px;">
+                        <tr>
+                            <th>STT</th>
+                            <th>Các tiêu chí đánh giá</th>
+                            <th>20</th>
+                            <th>40</th>
+                            <th>60</th>
+                            <th>80</th>
+                            <th>100</th>
+                        </tr>
+                    </thead>
+                    <tbody style="color:white;background: #096764;">
+                        @{
+                            for (int i = 0; i < ViewBag.Count; i++)
+                            {
+                                int k = i + 1;
+                                <tr>
+                                     <td>
+                                        @k
+                                    </td>
+                                    <td>
+                                        @ViewBag.ContentSurvey[@i]
+                                    </td>
+                                    <td>
+                                        @Html.RadioButton(@i.ToString(), 20)
+                                    </td>
+                                    <td>
+                                        @Html.RadioButton(@i.ToString(), 40)
+                                    </td>
+                                    <td>
+                                        @Html.RadioButton(@i.ToString(), 60)
+                                    </td>
+                                    <td>
+                                        @Html.RadioButton(@i.ToString(), 80)
+                                    </td>
+                                    <td>
+                                        @Html.RadioButton(@i.ToString(), 100)
+                                    </td>
+                                </tr>
+
+                            }
+
+                        }
+                    </tbody>
+                    
+
+
+                </table>
+            </div>
+            @Html.Hidden("id", Model.SubjectID)
+            @Html.Hidden("studentDetailID", Model.StudentDetailID)
+             
+            <div class="row">
+                <h4 style="font-size: 20px;color: #21087f;"> Ý kiến đóng góp:  <input type="text" name="note" value="" style="width:400px" /></h4>
+                <hr />
+                <input type="submit" value="Submit" class="btn btn-primary" />
+                @ViewBag.Message2
+            </div>
+
+           
+        }
+    }
+
+</body>
+</html>

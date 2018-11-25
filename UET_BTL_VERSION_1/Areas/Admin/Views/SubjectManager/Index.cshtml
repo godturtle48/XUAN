@@ -1,0 +1,135 @@
+﻿@model IEnumerable<UET_BTL.Model.Entities.Subject>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 class="header" style="font-weight:bold;color:blue;">Danh sách các học phần</h2>
+<div class="content-teacher">
+    <div class="table-responsive">
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr class="btn-primary">
+                    <th>
+                        STT
+                    </th>
+                    <th>
+                        Tên học phần
+                    </th>
+                    <th>
+                        Mã học phần
+                    </th>
+                    <th>
+                        Số tín chỉ
+                    </th>
+                    <th>
+                        Phòng học
+                    </th>
+                    <th>
+                        Thời gian,tiết
+                    </th>
+                    <th>    Tùy chọn</th>
+                </tr>
+            </thead>
+            <tbody style="color: blue; background: #b2d7cfd6;">
+                @{ int i = 0; }
+                @foreach (var item in Model)
+                {
+                    i = i + 1;
+                    <tr class="table-striped">
+                        <td>
+                            @i
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SubjectCode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreditNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ClassRoom)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TimeTeach)
+                        </td>
+                        <td>
+                            @Html.ActionLink("List", "ShowClass", new { id = item.SubjectID }, htmlAttributes: new { @class = "btn btn-warning" })
+                            @Html.ActionLink("Result", "ShowResultSurvey", new { id = item.SubjectID }, htmlAttributes: new { @class = "btn btn-primary" })
+                            <a href="#" class="btn btn-danger delete-subject" id="@item.SubjectID">Xóa</a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<form action="/quan-ly-hoc-phan/import-hoc-phan" method="post" enctype="multipart/form-data">
+    Import một danh sách lớp học phần từ excel:<br>
+    <input type="file" name="fileUpload" id="fileupload">
+    <br>
+    <input type="submit" value="Import" id="importdata" disabled ="disabled">
+</form>
+
+
+<div class="delete-subject-form">
+    <div class="add-tab">
+        <div class="header-tab">
+            <h5 class="text-center">Xóa học phần</h5>
+        </div>
+        <div class="information-content  table-responsive">
+            <form action="#">
+                <table class="table  ">
+
+                    <tr>
+                        <td>Tên học phần</td>
+                        <td><input name="Name" type="text" disabled class="input-information name" value="" maxlength="200" id="DsubjectName" required=""></td>
+                    </tr>
+                    <tbody>
+                        <tr>
+                            <td>Mã học phần</td>
+                            <td><input name="SubjectCode" type="text" disabled class="input-information" value="" id="DsubjectCode" required=""></td>
+                        </tr>
+                        <tr>
+                            <td>Số tín chỉ</td>
+                            <td><input name="CreditNumber" type="text" disabled class="input-information" value="" id="DsubjectCredit" required=""></td>
+                        </tr>
+                        <tr>
+                            <td>Phòng học</td>
+                            <td><input name="ClassRoom" type="text" disabled class="input-information" value="" id="DsubjectRoom" required=""></td>
+                        </tr>
+                        <tr>
+                            <td>Thời gian học</td>
+                            <td><input name="TimeTeach" type="text" disabled class="input-information" value="" id="DsubjectTime" required=""></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td style="text-align:left;">
+                                <div class="bottom-button">
+                                    <a class='btn btn-danger btn-delete'>Xóa</a>
+                                </div>
+                                <div class="bottom-button">
+                                    <a class='btn btn-success btn-cancle'>Hủy</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </form>
+
+        </div>
+
+    </div>
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/subject/js")
+}

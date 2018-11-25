@@ -1,0 +1,73 @@
+﻿@model IEnumerable<UET_BTL.Model.Entities.StudentDetail>
+
+@{
+    ViewBag.Title = "ShowListSubject";
+    Layout = "~/Areas/Member/Views/Shared/_LayoutCommon.cshtml";
+}
+
+<h2 style="font-weight:bold;color:blue">Các học phần đã đăng ký</h2>
+
+<div class="content-teacher">
+    <div class="table-responsive">
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr class="btn-primary">
+                    <th>STT</th>
+                    <th>
+                        Tên môn học
+                    </th>
+                    <th>
+                        Mã môn học
+                    </th>
+                    <th>
+                        Số tín chỉ
+                    </th>
+                    <th>
+                        Giảng viên
+                    </th>
+                    <th>
+                        Giảng đường
+                    </th>
+                    <th>
+                        Thời gian
+                    </th>
+                    <th>Tùy chỉnh</th>
+                </tr>
+            </thead>
+            <tbody style="color: blue; background: #b2d7cfd6;">
+                @{ int i = 0; }
+                @foreach (var item in Model)
+                {
+                    i = i + 1;
+                <tr class="table-striped">
+                    <td>
+                        @i
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Subject.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Subject.SubjectCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Subject.CreditNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Teacher.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Subject.ClassRoom)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Subject.TimeTeach)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Đánh giá môn học", "SurveySubject" ,new { id = item.SubjectID, stID = item.StudentID }, htmlAttributes: new { @class = "btn btn-primary" })
+                    </td>
+                </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

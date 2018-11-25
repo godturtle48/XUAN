@@ -1,0 +1,211 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList<UET_BTL.Model.Entities.Student>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@if (ViewBag.ThongBao != null)
+{
+    <h2>@ViewBag.ThongBao</h2>
+}
+else
+{
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+            <h2 style="font-weight:bold;color:blue">Quản lý sinh viên</h2>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+            @using (Html.BeginForm("Index", "StudentManager", FormMethod.Post))
+            {
+                <div class="input-group input-search">
+                    <input type="text" class="form-control" name="txtTimKiem" placeholder="Tìm kiếm sinh viên..." required>
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">Search</button>
+                    </span>
+                </div><!-- /input-group -->
+            }
+        </div>
+    </div>
+    <h4>@ViewBag.messageSearch</h4>
+    <h4>Tổng số sinh viên : @ViewBag.sum</h4>
+    <p>
+        <button class="btn btn-primary" id="add-button">Thêm mới</button>
+    </p>
+    <div class="content-teacher">
+        <div class="table-responsive">
+            <table class="table table-hover table-striped">
+                <thead>
+                    <tr class="btn-primary">
+                        <th>STT</th>
+                        <th>Họ và tên</th>
+                        <th>Khóa học</th>
+                        <th>Địa chỉ email</th>
+                        <th>Tên đăng nhập</th>
+                        <th>Mật khẩu</th>
+                        <th>Tùy chỉnh</th>
+                    </tr>
+                </thead>
+                <tbody style="color: blue;background: #b2d7cfd6;">
+                    @{ int i = 0; }
+                    @foreach (var item in Model)
+                    {
+                        i = i + 1;
+                        <tr class="table-striped">
+                            <td>
+                                @i
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Course)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PassWord)
+                            </td>
+                            <td>
+                                <a href="#" class="btn btn-warning edit-student" id="@item.StudentID">Sửa</a>
+                                <a href="#" class="btn btn-danger delete-student" id="@item.StudentID">Xóa</a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <form action="/quan-ly-sinh-vien/import-sinh-vien" method="post" enctype="multipart/form-data">
+        Import danh sách sinh viên từ excel:<br>
+        <input type="file" name="fileUpload" id="fileupload">
+        <br>
+
+        <input type="submit" value="Import" id="importdata" disabled ="disabled">
+    </form>
+
+
+    if (Model.PageCount > 1)
+    {
+        <div class="menu-trang">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+        </div>
+    }
+}
+
+
+<div class="delete-student-form">
+    <div class="add-tab">
+        <div class="header-tab">
+            <h5 class="text-center"></h5>
+        </div>
+        <div class="information-content  table-responsive">
+            <form action="#">
+                <table class="table  ">
+                    
+                    <tr>
+                        <td>Họ và tên</td>
+                        <td><input name="Name" type="text" disabled class="input-information name" value="" maxlength="200" id="DstudentName" required=""></td>
+                    </tr>
+                    <tbody>
+                        <tr>
+                            <td>Địa chỉ email</td>
+                            <td><input name="Email" type="text" disabled class="input-information" value="" id="DstudentEmail" required=""></td>
+                        </tr>
+                        <tr>
+                            <td>Tên đăng nhập</td>
+                            <td><input name="UserName" type="text" disabled class="input-information" value="" id="DstudentUsername" required=""></td>
+                        </tr>
+                        <tr>
+                            <td>Mật khẩu</td>
+                            <td><input name="PassWord" type="text" disabled class="input-information" value="" id="DstudentPassword" required=""></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                
+                            </td>
+                            <td style="text-align:left;">
+                                <div class="bottom-button">
+                                </div>
+                                <div class="bottom-button">
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </form>
+
+        </div>
+
+    </div>
+</div>
+<div class="create-student">
+    <div class="add-tab">
+        <div class="header-tab">
+            <h5>Thêm mới sinh viên</h5>
+        </div>
+        <div class="information-content  table-responsive">
+            <form action="/Admin/StudentManager/Create" id="addStudent" method="post">
+                <table class="table  ">
+                    <tr>
+                        <td>Họ và tên</td>
+                        <td><input name="Name" type="text" data-toggle="tooltip" data-placement="bottom" title="Nhập tên từ 5 - 200 kí tự" class="input-information input2 name" value="" maxlength="200" id="studentName" required=""></td>
+                    </tr>
+                    <tbody>
+                        <tr>
+                            <td>Mã sinh viên</td>
+                            <td><input name="StudentCode" type="text" data-toggle="tooltip" data-placement="bottom" title="Vui lòng nhập mã sinh viên là gồm 8 chữ số từ 0-9" class="input-information input2" value="" id="studentId" required=""></td>
+                        </tr>
+                        <tr>
+                            <td>Khóa học</td>
+                            <td><input name="Course" type="text" data-toggle="tooltip" data-placement="bottom" title="Nhập khóa học từ 5 - 200 kí tự" class="input-information input2" value="" id="studentClass" required=""></td>
+                        </tr>
+                        <tr>
+                            <td>Địa chỉ email</td>
+                            <td><input name="Email" type="email" data-toggle="tooltip" data-placement="bottom" title="Email có dạng x@vnu.edu.vn với x là 8 chữ số từ 0-9" class="input-information input2" value="" id="studentEmail" required=""></td>
+                        </tr>
+                        <tr>
+                            <td>Tên đăng nhập</td>
+                            <td><input name="UserName" autocomplete="username" type="text" data-toggle="tooltip" data-placement="bottom" title="Tên đăng nhập từ 5 - 200 kí tự và không trùng trong hệ thống" class="input-information input2" value="" id="studentUsername" required=""></td>
+                        </tr>
+                        <tr>
+                            <td>Mật khẩu</td>
+                            <td><input name="PassWord" autocomplete="current-password" type="text" data-toggle="tooltip" data-placement="bottom" title="Mật khẩu từ 5 - 200 kí tự" class="input-information input2" value="" id="studentPassword" required=""></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" name="idStudent" id="idStudent" hidden />
+                            </td>
+                            <td style="text-align:left;">
+                                <div class="bottom-button">
+                                    <a href="#" class="btn btn-success btn-submit">Thêm mới</a>
+                                </div>
+                                <div class="bottom-button">
+                                    <a href="#" class="btn btn-danger btn-close" id="studentCancel">Hủy bỏ</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </form>
+
+        </div>
+
+    </div>
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/student/js")
+}
+

@@ -1,0 +1,142 @@
+﻿
+* {
+    font-family: Poppins-Regular, sans-serif;
+}
+
+.top-bar {
+    height: 60px;
+    background-color: #f7ed79;
+}
+
+input {
+    background-color: #fff;
+    border: 1px solid green;
+    border-radius: 20px;
+    line-height: 32px;
+    padding: 5px;
+    padding-left: 40px;
+    margin: 10px 0px;
+}
+
+    input:focus {
+        outline: none;
+    }
+
+.btn {
+    margin: 10px;
+}
+
+    .btn:hover {
+        background-color: black;
+        color: white;
+    }
+
+.glyphicon {
+    position: relative;
+    left: -210px;
+}
+
+.login-box {
+    background-color: #9dcb8d;
+    height: calc(100vh - 120px);
+}
+
+.login-form {
+    padding-top: 120px;
+}
+
+.bottom-bar {
+    height: 60px;
+    background-color: #f7ed79;
+    padding: 20px 0px;
+}
+
+.title {
+    font-family: Poppins-Bold, sans-serif;
+    font-size: 20px;
+}
+/*-------------------------------------------------------------------------------------------------*/
+.verify-email {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: #80808082;
+    z-index: 999;
+    display: none;
+}
+
+.add-tab {
+    /*display: none;*/
+    position: fixed;
+    margin: 0 auto;
+    min-width: 39vw;
+    height: auto;
+    z-index: 2;
+    top: 100px;
+    left: 30vw;
+    color: #000000;
+    background-color: #86ecf1;
+    border: 5px solid #e60b7b;
+    border-radius: 5px;
+    padding: 5px 7px 0 7px;
+}
+
+.input-information {
+    border: none;
+    border-radius: 0px;
+    padding-left: 11px;
+    height: 28px;
+    border-bottom: 1px solid #3F51B5;
+    width: 100%;
+}
+
+    .input-information:focus {
+        outline: none;
+    }
+
+.border-red {
+    border: 2px solid red;
+}
+
+.bottom-button {
+    display: inline-block;
+}
+
+.header-tab h5 {
+    margin: 0;
+    padding: 0;
+    font-size: 28px;
+    height: 38px;
+    line-height: 38px;
+    color: #0c0cc3;
+}
+
+.header-tab {
+    background: #1cea24;
+    padding: 0;
+    margin: -5px -7px 0px -7px;
+    text-align: center;
+    height: 38px;
+    border-bottom: 1px solid #7c2c0f;
+}
+
+td {
+    vertical-align: middle !important;
+    cursor: pointer;
+    text-align: center;
+    font-size: 15px;
+}
+*{}
+.load {
+    position: fixed;
+    margin: 0 auto;
+    min-width: 39px;
+    height: auto;
+    z-index: 5;
+    top: 133px;
+    padding: 5px 7px 0 7px;
+    right: 227px;
+    display:none;
+}

@@ -1,0 +1,115 @@
+﻿@model UET_BTL.Model.Entities.User
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>REVISUB</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Assets/Shared/css/bootstrap.min.css" rel="stylesheet" />
+    @Styles.Render("~/login/css")
+</head>
+
+<body>
+    <div class="top-bar">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h3 style="font-family: Poppins-Bold;">REVISUB</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="login-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-6 hidden-sm hidden-xs">
+                    <img src="~/Assets/SignIn/images/free-computer-elements-vector.png" class="img-responsive" style="padding-top: 85px" />
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6">
+                    <div class="login-form text-center">
+                        <h4 class="title" style="font-size:30px;font-weight: bold;">LOG IN</h4>
+                        <div class="error" style="color:red">
+                            <p>@ViewBag.ThongBao</p>
+                        </div>
+                        <div class="input-form">
+                            <form action="/dang-nhap" method="post">
+                                <div>
+                                    <input type="text" name="username" placeholder="Tài khoản" required id="username">
+                                    <span class="glyphicon glyphicon-user"></span>
+
+                                </div>
+                                <div>
+                                    <input type="password" name="password" placeholder="Mật khẩu" required id="password">
+                                    <span class="glyphicon glyphicon-lock"></span>
+
+
+                                </div>
+                                <button class="btn btn-success">Đăng nhập</button>
+                            </form>
+                            <a href="#" id="forgot">Quên mật khẩu</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bottom-bar">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <p class="pull-left">Copyright © 2018 Revisub. All right reserved .</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="verify-email">
+        <div class="add-tab">
+            <div class="header-tab">
+                <h5>Xác nhận thông tin</h5>
+            </div>
+            <div class="information-content  table-responsive">
+                <form action="/SignIn/Home/GetPassWord" id="verfiry" method="post">
+                    <table class="table  ">
+                       
+                        <tbody>
+                            <tr>
+                                <td>Tên đăng nhập</td>
+                                <td><input name="UserName" type="text"  class="input-information input2" value="" id="Username" required=""></td>
+                            </tr>
+                            <tr>
+                                <td>Địa chỉ email</td>
+                                <td><input name="Email" type="email"   class="input-information input2" value="" id="Email" required=""></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td style="text-align:left;">
+                                    <div class="bottom-button">
+                                        <a href="#" class="btn btn-success btn-submit">Xác nhận</a>
+                                    </div>
+                                    <div class="bottom-button">
+                                        <a href="#" class="btn btn-danger btn-close" id="studentCancel">Hủy bỏ</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="load">
+        <img src="~/Assets/SignIn/images/preload_waiting.gif" />
+    </div>
+    @Scripts.Render("~/bootstrap-jquery/js")
+    @Scripts.Render("~/login/js")
+
+</body>
+
+</html>

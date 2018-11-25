@@ -1,0 +1,64 @@
+﻿
+
+@model UET_BTL.Model.Entities.StudentDetail
+
+@{
+    ViewBag.Title = "ShowResultSurvey";
+    Layout = "~/Areas/Member/Views/Shared/_LayoutCommon.cshtml";
+}
+
+<h2 style="font-weight:bold;color:blue;text-align:center">Bảng đánh giá theo cả lớp </h2>
+<h4>Tên môn học: @Model.Subject.Name  @Model.Subject.SubjectCode</h4>
+<h4>Số tín chỉ: @Model.Subject.CreditNumber</h4>
+<h4>Tổng Số sinh viên: @ViewBag.SumStudent</h4>
+<h4>Tên giảng viên: @Model.Teacher.Name</h4>
+@{ int k = 0; }
+@{
+    if (ViewBag.hasSurvey == 0)
+    {
+        <h2>Chưa có kết quả đánh giá</h2>
+    }
+    else
+    {
+        <div class="content-teacher">
+            <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr class="btn-primary">
+                            <th>
+                                STT
+                            </th>
+                            <th>
+                                Tên tiêu chí đánh giá
+                            </th>
+                            <th>
+                                Điểm trung bình ( thang điểm 100 )
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody style="color: blue; background: #b2d7cfd6;">
+                        @for (int i = 0; i < ViewBag.CountSurvey; i++)
+                        {
+                            k = k + 1;
+                            <tr class="table-striped">
+                                <td>
+                                    @k
+                                </td>
+                                <td>
+                                    @ViewBag.NameSurvey[@i]
+                                </td>
+                                <td>
+                                    @Math.Round(@ViewBag.ListPointAver[@i], 2)
+                                </td>
+
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+
+}
+

@@ -1,0 +1,56 @@
+﻿@model IEnumerable<UET_BTL.Model.Entities.StudentDetail>
+
+@{
+    ViewBag.Title = "ShowListSubject";
+    Layout = "~/Areas/Member/Views/Shared/_LayoutCommon.cshtml";
+}
+
+<h2>Danh sách các học phần đang dạy</h2>
+
+<div class="content-teacher">
+    <div class="table-responsive">
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr class="btn-primary">
+                    <th>STT</th>
+                    <th>
+                        Tên học phần
+                    </th>
+                    <th>
+                        Mã học phần
+                    </th>
+                    <th>
+                        Tên giảng viên
+                    </th>
+                    <th>Tùy chỉnh</th>
+                </tr>
+            </thead>
+            <tbody style="color: blue; background: #b2d7cfd6;">
+                @{ int i = 0; }
+                @foreach (var item in Model)
+                {
+                    i = i + 1;
+                <tr class="table-striped">
+                    <td>
+                        @i
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Subject.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Subject.SubjectCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Teacher.Name)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Danh sách lớp", "ShowClass", new { id = item.Subject.SubjectID }, htmlAttributes: new { @class = "btn btn-info" })
+                        @Html.ActionLink("Kết quả đánh giá", "ShowResultSurvey", new { id = item.Subject.SubjectID }, htmlAttributes: new { @class = "btn btn-primary" })
+                    </td>
+                </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

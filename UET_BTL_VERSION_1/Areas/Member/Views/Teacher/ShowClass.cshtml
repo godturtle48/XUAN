@@ -1,0 +1,63 @@
+﻿@model IEnumerable<UET_BTL.Model.Entities.StudentDetail>
+
+@{
+    ViewBag.Title = "ShowClass";
+    Layout = "~/Areas/Member/Views/Shared/_LayoutCommon.cshtml";
+}
+
+<h2>
+    Danh sách cả lớp môn học @Html.DisplayFor(model => model.FirstOrDefault().Subject.Name)
+    @Html.DisplayFor(model => model.FirstOrDefault().Subject.SubjectCode)
+</h2>
+
+<div class="content-teacher">
+    <div class="table-responsive">
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr class="btn-primary">
+                    <th>
+                        STT
+                    </th>
+                    <th>
+                        Họ tên
+                    </th>
+                    <th>
+                        Mã sinh viên
+                    </th>
+                    <th>
+                        Khóa học
+                    </th>
+                    <th>
+                        Email
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody style="color: blue; background: #b2d7cfd6;">
+                @{ int i = 0; }
+                @foreach (var item in Model)
+                {
+                    i = i + 1;
+                    <tr class="table-striped">
+                        <td>
+                            @i
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Student.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Student.StudentCode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Student.Course)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Student.Email)
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
