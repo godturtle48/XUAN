@@ -14,6 +14,7 @@ namespace UET_BTL_VERSION_1.Areas.Admin.Controllers
         // Hiển thị trang chủ của index gồm số người online, số sinh viên, giảng viên ...
         public ActionResult Index()
         {
+
             // Kiểm tra session đã tồn tại chưa 
             if (Session["user"] != null)
             {
