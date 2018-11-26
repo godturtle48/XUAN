@@ -55,7 +55,7 @@ namespace UET_BTL_VERSION_1.Areas.Admin.Controllers
                 return RedirectToAction("NotFoundWebsite", "Home", new { area = "SignIn" });
             }
             // Lấy ra tiêu chí theo id
-            ContentSurvey contentSurvey = db.ContentSurveys.Find(id);
+            ContentSurvey contentSurvey = db.ContentSurveys.FirstOrDefault(s => s.ContentSurveyID == id);
             if (contentSurvey == null)
             {
                 return RedirectToAction("NotFoundWebsite", "Home", new { area = "SignIn" });
@@ -97,7 +97,7 @@ namespace UET_BTL_VERSION_1.Areas.Admin.Controllers
                 return RedirectToAction("NotFoundWebsite", "Home", new { area = "SignIn" });
             }
             // Lấy ra tiêu chí theo id
-            ContentSurvey contentSurvey = db.ContentSurveys.Find(id);
+            ContentSurvey contentSurvey = db.ContentSurveys.FirstOrDefault(x => x.ContentSurveyID == id);
             if (contentSurvey == null)
             {
                 return RedirectToAction("NotFoundWebsite", "Home", new { area = "SignIn" });
@@ -109,12 +109,13 @@ namespace UET_BTL_VERSION_1.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            if (id == null)
+           
+            // Láy ra tiêu chí đó và xóa
+            ContentSurvey contentSurvey = db.ContentSurveys.FirstOrDefault(s => s.ContentSurveyID == id);
+            if (contentSurvey == null)
             {
                 return RedirectToAction("NotFoundWebsite", "Home", new { area = "SignIn" });
             }
-            // Láy ra tiêu chí đó và xóa
-            ContentSurvey contentSurvey = db.ContentSurveys.FirstOrDefault(s => s.ContentSurveyID == id);
             db.ContentSurveys.Remove(contentSurvey);
             try
             {

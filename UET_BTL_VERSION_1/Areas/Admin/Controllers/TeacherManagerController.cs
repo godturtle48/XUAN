@@ -138,14 +138,14 @@ namespace UET_BTL_VERSION_1.Areas.Admin.Controllers
             }
             // Lấy giảng viên theo id
             Teacher teacher = db.Teachers.FirstOrDefault(s => s.TeacherID == id);
+            if (teacher == null)
+            {
+                return RedirectToAction("NotFoundWebsite", "Home", new { area = "SignIn" });
+            }
             bool a = db.StudentDetails.Any(x => x.TeacherID == id);
             if (a)
             {
                 return Json(new { status = 0, teacher = teacher }, JsonRequestBehavior.AllowGet);
-            }
-            if (teacher == null)
-            {
-                return RedirectToAction("NotFoundWebsite", "Home", new { area = "SignIn" });
             }
             return Json(new { status = 1, teacher = teacher }, JsonRequestBehavior.AllowGet);
         }
@@ -154,10 +154,6 @@ namespace UET_BTL_VERSION_1.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return RedirectToAction("NotFoundWebsite", "Home", new { area = "SignIn" });
-            }
             // Lấy giảng viên theo id
             Teacher teacher = db.Teachers.FirstOrDefault(s => s.TeacherID == id);
             if (teacher == null)
@@ -180,10 +176,20 @@ namespace UET_BTL_VERSION_1.Areas.Admin.Controllers
         {
             ViewBag.message = "Import không thành công";
             int count = 0;
-            var package = new ExcelPackage(fileUpload.InputStream);
-            if (ImportData(out count, package))
+            try
             {
-                ViewBag.message = "Import thành công";
+                // Thông báo tổng số giang viên được import
+                ViewBag.countStudent = 0;
+                // Lấy file đã chọn để thao tác 
+                var package = new ExcelPackage(fileUpload.InputStream);
+                if (ImportData(out count, package))
+                {
+                    ViewBag.message = "Import thành công";
+                }
+            }
+            catch (Exception)
+            {
+                return View();
             }
             ViewBag.countStudent = count;
             return View();
@@ -232,7 +238,7 @@ namespace UET_BTL_VERSION_1.Areas.Admin.Controllers
                     startRow++;
                 } while (data != null);
             }
-            catch (Exception x)
+            catch (Exception)
             {
 
 
@@ -274,7 +280,7 @@ namespace UET_BTL_VERSION_1.Areas.Admin.Controllers
                     result = true;
                 }
             }
-            catch (Exception x)
+            catch (Exception)
             {
 
             }

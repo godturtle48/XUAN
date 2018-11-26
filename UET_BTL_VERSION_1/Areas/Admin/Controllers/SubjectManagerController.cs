@@ -31,7 +31,7 @@ namespace UET_BTL_VERSION_1.Areas.Admin.Controllers
                 return RedirectToAction("NotFoundWebsite", "Home", new { area = "SignIn" });
             }
             // Lấy ra học phần theo id 
-            Subject subject = db.Subjects.Find(id);
+            Subject subject = db.Subjects.FirstOrDefault(s => s.SubjectID == id);
             if (subject == null)
             {
                 return RedirectToAction("NotFoundWebsite", "Home", new { area = "SignIn" });
@@ -44,12 +44,8 @@ namespace UET_BTL_VERSION_1.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return RedirectToAction("NotFoundWebsite", "Home", new { area = "SignIn" });
-            }
             // Lấy ra học phần theo id
-            Subject subject = db.Subjects.Find(id);
+            Subject subject = db.Subjects.FirstOrDefault(s => s.SubjectID == id);
             if (subject == null)
             {
                 return RedirectToAction("NotFoundWebsite", "Home", new { area = "SignIn" });
@@ -82,18 +78,31 @@ namespace UET_BTL_VERSION_1.Areas.Admin.Controllers
         {
             ViewBag.message = "Import không thành công";
             int count = 0;
-            var package = new ExcelPackage(fileUpload.InputStream);
-            if (ImportData(out count, package))
+            int countSuccess = 0;
+            try
             {
-                ViewBag.message = "Import thành công";
+                // Lấy file đã chọn để thao tác 
+                var package = new ExcelPackage(fileUpload.InputStream);
+                if (ImportData(out count, out countSuccess, package))
+                {
+                    ViewBag.message = "Import thành công";
+                    ViewBag.countMessage = "Số sinh viên được import: " + countSuccess.ToString();
+                    ViewBag.countSuccessMessage = "Số sinh viên không có trong hệ thống hoặc lỗi là : " + (count - countSuccess).ToString();
+                }
             }
+            catch (Exception)
+            {
+                return View();
+            }
+            
             return View();
         }
 
         // Import dữ liệu 
-        public bool ImportData(out int count, ExcelPackage package)
+        public bool ImportData(out int count, out int countSuccess, ExcelPackage package)
         {
             count = 0;
+            countSuccess = 0;
             var result = false;
             try
             {
@@ -137,11 +146,17 @@ namespace UET_BTL_VERSION_1.Areas.Admin.Controllers
                         data = workSheet.Cells[startRow, startColumn].Value;
                         string userName = workSheet.Cells[startRow, startColumn + 1].Value.ToString();
                         object dob = workSheet.Cells[startRow, startColumn + 3].Value;
+                        startRow++;
                         // Kiểm tra xem đã cuối danh sách chưa
                         if (data != null)
                         {
+                            count++;
                             // Lấy ra sinh viên có username bằng username trong excel
                             Student stu = db.Students.FirstOrDefault(x => x.UserName.Trim().Equals(userName.Trim()));
+                            if (stu == null)
+                            {
+                                continue;
+                            }
                             // Kiểm tra thông tin ngày sinh và cập nhật cho sinh viên
                             if (stu.DateOfBirth == null)
                             {
@@ -160,14 +175,15 @@ namespace UET_BTL_VERSION_1.Areas.Admin.Controllers
                             // Lưu một sinh viên vào danh sách học phần
                             db.StudentDetails.Add(stuDetail);
                             db.SaveChanges();
+                            countSuccess++;
                             result = true;
                         }
-                        startRow++;
+                        
                     } while (data != null);
                 }
 
             }
-            catch (Exception x)
+            catch (Exception )
             {
 
 
@@ -178,12 +194,17 @@ namespace UET_BTL_VERSION_1.Areas.Admin.Controllers
         // Hiển thị kết quả đánh giá theo cả lớp học phần
         public ActionResult ShowResultSurvey(int? id)
         {
-            // Lấy ra danh sách các id sinh viên chi tiết của một học phần
-            List<int> lis = db.Subjects.FirstOrDefault(x => x.SubjectID == id).StudentDetail.Select(x => x.StudentDetailID).ToList();
             if (id == null)
             {
                 return RedirectToAction("NotFoundWebsite", "Home", new { area = "SignIn" });
             }
+            // Lấy ra danh sách các id sinh viên chi tiết của một học phần
+             Subject subject = db.Subjects.FirstOrDefault(x => x.SubjectID == id);
+            if (subject == null)
+            {
+                return RedirectToAction("NotFoundWebsite", "Home", new { area = "SignIn" });
+            }
+            List<int> lis = subject.StudentDetail.Select(x => x.StudentDetailID).ToList();
             // Lấy số lượng sinh viên đã đánh giá học phần
             ViewBag.hasSurvey = db.Surveys.Where(x => lis.Any(k => k == x.StudentDetailID)).ToList().Count();
             // Lấy ra thông tin chi tiết của sinh viên đầu tiên trong học phần đó

@@ -133,7 +133,7 @@ namespace UET_BTL_VERSION_1.Areas.Admin.Controllers
             {
                 return RedirectToAction("NotFoundWebsite", "Home", new { area = "SignIn" });
             }
-            Student student = db.Students.Find(id);
+            Student student = db.Students.FirstOrDefault(s => s.StudentID == id);
             if (student == null)
             {
                 return RedirectToAction("NotFoundWebsite", "Home", new { area = "SignIn" });
@@ -145,12 +145,13 @@ namespace UET_BTL_VERSION_1.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            if (id == null)
+            
+            // Tìm kiếm sinh viên theo mã
+            Student student = db.Students.FirstOrDefault(x => x.StudentID == id);
+            if (student == null)
             {
                 return RedirectToAction("NotFoundWebsite", "Home", new { area = "SignIn" });
             }
-            // Tìm kiếm sinh viên theo mã
-            Student student = db.Students.FirstOrDefault(x => x.StudentID == id);
             // Tìm kiếm user theo mã sinh viên
             User user = db.Users.FirstOrDefault(x => x.StudentID == id);
             // Lấy ra danh sách sinh viên chi tiết theo mã
@@ -185,11 +186,20 @@ namespace UET_BTL_VERSION_1.Areas.Admin.Controllers
         {
             ViewBag.message = "Import không thành công";
             int count = 0;
-            // Lấy file đã chọn để thao tác 
-            var package = new ExcelPackage(fileUpload.InputStream);
-            if (ImportData(out count, package))
+            try
             {
-                ViewBag.message = "Import thành công";
+                // Thông báo tổng số sinh viên được import
+                ViewBag.countStudent = 0;
+                // Lấy file đã chọn để thao tác 
+                var package = new ExcelPackage(fileUpload.InputStream);
+                if (ImportData(out count, package))
+                {
+                    ViewBag.message = "Import thành công";
+                }
+            }
+            catch (Exception)
+            {
+                return View();
             }
             // Thông báo tổng số sinh viên được import
             ViewBag.countStudent = count;
@@ -237,7 +247,7 @@ namespace UET_BTL_VERSION_1.Areas.Admin.Controllers
                     startRow++;
                 } while (data != null);
             }
-            catch (Exception x)
+            catch (Exception )
             {
 
 
@@ -279,7 +289,7 @@ namespace UET_BTL_VERSION_1.Areas.Admin.Controllers
                     result = true;
                 }
             }
-            catch (Exception x)
+            catch (Exception )
             {
 
             }

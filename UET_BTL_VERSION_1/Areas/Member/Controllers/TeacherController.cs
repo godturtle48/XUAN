@@ -101,9 +101,14 @@ namespace UET_BTL_VERSION_1.Areas.Member.Controllers
             {
                 return RedirectToAction("NotFoundWebsite", "Home", new { area = "SignIn" });
             }
-            // Lấy ra danh sách sinh viên của học phần đó
-            IEnumerable<StudentDetail> listStudent = db.Subjects.FirstOrDefault(x => x.SubjectID == id).StudentDetail.ToList();
-            return View(listStudent);
+            // Lấy ra hoc phan theo id
+            Subject subjecct = db.Subjects.FirstOrDefault(x => x.SubjectID == id);
+            if (subjecct == null)
+            {
+                return RedirectToAction("NotFoundWebsite", "Home", new { area = "SignIn" });
+            }
+            List<StudentDetail> listStudentDetail = subjecct.StudentDetail.ToList();
+            return View(listStudentDetail);
         }
 
         // Hiển thị kết quả đánh giá học phần của môn học đó
@@ -113,8 +118,14 @@ namespace UET_BTL_VERSION_1.Areas.Member.Controllers
             {
                 return RedirectToAction("NotFoundWebsite", "Home", new { area = "SignIn" });
             }
+            // Lấy ra hoc phan theo id
+            Subject subjecct = db.Subjects.FirstOrDefault(x => x.SubjectID == id);
+            if (subjecct == null)
+            {
+                return RedirectToAction("NotFoundWebsite", "Home", new { area = "SignIn" });
+            }
             // Lấy ra danh sách id của sinh viên - học phần
-            List<int> lis = db.Subjects.FirstOrDefault(x => x.SubjectID == id).StudentDetail.Select(x => x.StudentDetailID).ToList();
+            List<int> lis = subjecct.StudentDetail.Select(x => x.StudentDetailID).ToList();
             // Lấy ra một đối tượng sinh viên - học phần
             StudentDetail student_Detail = db.StudentDetails.First(x => x.SubjectID == id);
             // Lấy ra tổng số đánh giá học phần 

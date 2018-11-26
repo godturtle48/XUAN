@@ -109,7 +109,11 @@ namespace UET_BTL_VERSION_1.Areas.Member.Controllers
                 return RedirectToAction("NotFoundWebsite", "Home", new { area = "SignIn" });
             }
             // Lấy thông tin chi tiết môn học - sinh viên
-            StudentDetail student_Detail = db.StudentDetails.First(x => x.SubjectID == id && x.StudentID == stID);
+            StudentDetail student_Detail = db.StudentDetails.FirstOrDefault(x => x.SubjectID == id && x.StudentID == stID);
+            if (student_Detail == null)
+            {
+                return RedirectToAction("NotFoundWebsite", "Home", new { area = "SignIn" });
+            }
             // Kiểm tra sinh viên đã đánh giá chưa
             if (db.Surveys.Any(x => x.StudentDetailID == student_Detail.StudentDetailID))
             {
