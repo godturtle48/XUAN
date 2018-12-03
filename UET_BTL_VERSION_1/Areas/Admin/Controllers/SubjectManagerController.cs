@@ -1,6 +1,7 @@
 ﻿using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -160,7 +161,7 @@ namespace UET_BTL_VERSION_1.Areas.Admin.Controllers
                             // Kiểm tra thông tin ngày sinh và cập nhật cho sinh viên
                             if (stu.DateOfBirth == null)
                             {
-                                stu.DateOfBirth = DateTime.Parse(dob.ToString());
+                                stu.DateOfBirth = DateTime.ParseExact(dob.ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
                             }
                             // Kiểm tra mã sinh viên và cập nhật cho sinh viên
                             if (stu.StudentCode == null)

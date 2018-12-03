@@ -13,12 +13,12 @@
 <h3>Giảng viên:  @Html.DisplayFor(model => model.FirstOrDefault().Teacher.Name)</h3>
 
 
-
+<hr />
 <div class="content-teacher">
     <div class="table-responsive">
         <table class="table table-hover table-striped">
             <thead>
-                <tr class="btn-primary">
+                <tr style="background-color: dodgerblue;color:white;">
                     <th>STT</th>
                     <th>Họ và tên</th>
                     <th>Mã sinh viên</th>
@@ -28,7 +28,7 @@
                     <th>Tùy chọn</th>
                 </tr>
             </thead>
-            <tbody style="color: blue; background: #b2d7cfd6;">
+            <tbody>
                 @{ int i = 0; }
                 @foreach (var item in Model)
                 {
@@ -55,7 +55,7 @@
                             @Html.DisplayFor(modelItem => item.Student.Email)
                         </td>
                         <td>
-                            @Html.ActionLink("Kết quả đánh giá", "ResultSurveyEveryStudent", new { id = item.StudentDetailID }, htmlAttributes: new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Kết quả đánh giá", "ResultSurveyEveryStudent", new { id = item.StudentDetailID }, htmlAttributes: new { @class = "btn btn-success" })
                         </td>
                     </tr>
                 }

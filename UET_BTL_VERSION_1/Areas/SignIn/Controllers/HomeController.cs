@@ -62,6 +62,7 @@ namespace UET_BTL_VERSION_1.Areas.SignIn.Controllers
             // Lấy mật khẩu từ form
             string password = form["password"].ToString().Trim();
             // Lấy user có username và password trùng với form submit
+            // User user = db.Users.FirstOrDefault(x => x.UserName.Equals(username) && x.PassWord.Equals(password));
             User user = db.Users.FirstOrDefault(x => x.UserName.Equals(username) && x.PassWord.Equals(password));
             // Kiểm tra xem user có tồn tại không
             if (user != null)

@@ -16,7 +16,7 @@
     <h4 style="font-size: 20px;color: #21087f;">Tên môn học: @Model.Subject.Name  @Model.Subject.SubjectCode</h4>
     <h4 style="font-size: 20px;color: #21087f;">Số tín chỉ: @Model.Subject.CreditNumber</h4>
     <h4 style="font-size: 20px;color: #21087f;">Tên giảng viên: @Model.Teacher.Name</h4>
-
+    <hr />
     @if (ViewBag.Message != null)
     {
         <h1>@ViewBag.Message</h1>
@@ -27,8 +27,8 @@
         {
             <div class="row">
 
-                <table class="table">
-                    <thead style="background: blue;color: white;font-size: 20px;">
+                <table class="table table-hover table-striped">
+                    <thead style="background-color: dodgerblue;color: white;font-size: 17px;">
                         <tr>
                             <th>STT</th>
                             <th>Các tiêu chí đánh giá</th>
@@ -39,7 +39,7 @@
                             <th>100</th>
                         </tr>
                     </thead>
-                    <tbody style="color:white;background: #096764;">
+                    <tbody>
                         @{
                             for (int i = 0; i < ViewBag.Count; i++)
                             {
@@ -83,7 +83,7 @@
             <div class="row">
                 <h4 style="font-size: 20px;color: #21087f;"> Ý kiến đóng góp:  <input type="text" name="note" value="" style="width:400px" /></h4>
                 <hr />
-                <input type="submit" value="Submit" class="btn btn-primary" />
+                <input type="submit" value="Ghi nhận" class="btn btn-success" />
                 @ViewBag.Message2
             </div>
 

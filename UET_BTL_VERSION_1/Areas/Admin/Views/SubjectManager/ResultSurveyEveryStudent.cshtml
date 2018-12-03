@@ -15,8 +15,8 @@
         <div class="content-teacher">
             <div class="table-responsive">
                 <table class="table table-hover table-striped">
-                    <thead>
-                        <tr class="btn-primary">
+                    <thead style="background-color:dodgerblue;color:white;">
+                        <tr>
                             <th>
                                 STT
                             </th>
@@ -24,11 +24,11 @@
                                 Tên tiêu chí đánh giá
                             </th>
                             <th>
-                                Điểm đánh giá(Thang điểm 100)
+                                Điểm đánh giá (Thang điểm 100)
                             </th>
                         </tr>
                     </thead>
-                    <tbody style="color: blue; background: #b2d7cfd6;">
+                    <tbody>
                         @for (int i = 0; i < ViewBag.CountSurvey; i++)
                         {
                             k = k + 1;

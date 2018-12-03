@@ -5,13 +5,13 @@
     Layout = "~/Areas/Member/Views/Shared/_LayoutCommon.cshtml";
 }
 
-<h2 style="font-weight:bold;color:blue">Các học phần đã đăng ký</h2>
-
+<h4>Các học phần đã đăng ký</h4>
+<hr />
 <div class="content-teacher">
     <div class="table-responsive">
         <table class="table table-hover table-striped">
-            <thead>
-                <tr class="btn-primary">
+            <thead style="background-color: dodgerblue;color: white;">
+                <tr>
                     <th>STT</th>
                     <th>
                         Tên môn học
@@ -34,7 +34,7 @@
                     <th>Tùy chỉnh</th>
                 </tr>
             </thead>
-            <tbody style="color: blue; background: #b2d7cfd6;">
+            <tbody>
                 @{ int i = 0; }
                 @foreach (var item in Model)
                 {
@@ -62,7 +62,7 @@
                         @Html.DisplayFor(modelItem => item.Subject.TimeTeach)
                     </td>
                     <td>
-                        @Html.ActionLink("Đánh giá môn học", "SurveySubject" ,new { id = item.SubjectID, stID = item.StudentID }, htmlAttributes: new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Đánh giá môn học", "SurveySubject" ,new { id = item.SubjectID, stID = item.StudentID }, htmlAttributes: new { @class = "btn btn-success" })
                     </td>
                 </tr>
                 }

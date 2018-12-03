@@ -8,10 +8,11 @@
 }
 
 <h2 style="font-weight:bold;color:blue;text-align:center">Bảng đánh giá theo cả lớp </h2>
-<h4>Tên môn học: @Model.Subject.Name  @Model.Subject.SubjectCode</h4>
-<h4>Số tín chỉ: @Model.Subject.CreditNumber</h4>
-<h4>Tổng Số sinh viên: @ViewBag.SumStudent</h4>
-<h4>Tên giảng viên: @Model.Teacher.Name</h4>
+<h4 style="font-size:20px;">Tên môn học: @Model.Subject.Name  @Model.Subject.SubjectCode</h4>
+<h4 style="font-size:20px;">Số tín chỉ: @Model.Subject.CreditNumber</h4>
+<h4 style="font-size:20px;">Tổng Số sinh viên: @ViewBag.SumStudent</h4>
+<h4 style="font-size:20px;">Tên giảng viên: @Model.Teacher.Name</h4>
+<hr/>
 @{ int k = 0; }
 @{
     if (ViewBag.hasSurvey == 0)
@@ -23,8 +24,8 @@
         <div class="content-teacher">
             <div class="table-responsive">
                 <table class="table table-hover table-striped">
-                    <thead>
-                        <tr class="btn-primary">
+                    <thead style="background-color:dodgerblue;color:white;">
+                        <tr>
                             <th>
                                 STT
                             </th>
@@ -32,11 +33,11 @@
                                 Tên tiêu chí đánh giá
                             </th>
                             <th>
-                                Điểm trung bình ( thang điểm 100 )
+                                Điểm trung bình (thang điểm 100)
                             </th>
                         </tr>
                     </thead>
-                    <tbody style="color: blue; background: #b2d7cfd6;">
+                    <tbody>
                         @for (int i = 0; i < ViewBag.CountSurvey; i++)
                         {
                             k = k + 1;

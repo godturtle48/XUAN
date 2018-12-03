@@ -42,3 +42,4 @@ C:\Users\Admin\Desktop\XUAN\UET_BTL.Model\obj\Debug\UET_BTL.Model.csproj.CoreCom
 C:\Users\Admin\Desktop\XUAN\UET_BTL.Model\obj\Debug\UET_BTL.Model.csproj.CopyComplete
 C:\Users\Admin\Desktop\XUAN\UET_BTL.Model\obj\Debug\UET_BTL.Model.dll
 C:\Users\Admin\Desktop\XUAN\UET_BTL.Model\obj\Debug\UET_BTL.Model.pdb
+C:\Users\Admin\Desktop\XUAN\UET_BTL.Model\obj\Debug\UET_BTL.Model.csprojAssemblyReference.cache

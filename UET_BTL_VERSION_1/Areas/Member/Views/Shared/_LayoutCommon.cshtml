@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width" />
     @Styles.Render("~/bootstrap/css")
+    <link href="~/Assets/Shared/css/dashboard.css" rel="stylesheet" />
 </head>
 <body>
     <div class="container-fluid">
@@ -20,12 +21,12 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#">@Session["fullname"]</a>
+                        <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;@Session["fullname"]</a>
                     </div>
                     <div class="collapse navbar-collapse navbar-ex1-collapse">
                         <ul class="nav navbar-nav navbar-right">
                             <li>
-                                <a href="/SignIn/Home/Logout">Đăng xuất </a>
+                                <a href="/SignIn/Home/Logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Đăng xuất </a>
                             </li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
@@ -47,7 +48,6 @@
             </div><!--end-main-dashboard-->
         </div>
     </div><!-- end-body-page-->
-    <hr>
     @Scripts.Render("~/bootstrap-jquery/js")
     @RenderSection("scripts", required: false)
 </body>
