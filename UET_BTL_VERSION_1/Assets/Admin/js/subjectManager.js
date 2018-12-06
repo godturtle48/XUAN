@@ -48,6 +48,26 @@
         $(".delete-subject-form").fadeOut(700);
     });
     //end  ajax delete subject
+    // Start print invoice
+    $(".printResultSurvey").click(function () {
+        let content = $(".result-survey").html();
+        printResultSurvey(content);
+    });
+
+    function printResultSurvey(content, script) {
+        var printWindow = window.open('', '', 'height=800,width=1200');
+        printWindow.document.write('<html><head><title>Print Result </title>');
+        printWindow.document.write('</head><body >');
+        printWindow.document.write(content);
+        printWindow.document.write('</body></html>');
+        printWindow.document.close();
+        printWindow.print();
+    }
+
+    // End print invoice
 
 });
+
+
+
 

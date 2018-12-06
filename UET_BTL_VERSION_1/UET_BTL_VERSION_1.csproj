@@ -183,6 +183,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Shared\images\logo2_new-min.png" />
     <Content Include="Assets\SignIn\css\Login.css" />
     <Content Include="Assets\Admin\js\studentManager.js" />
     <Content Include="Assets\Admin\js\subjectManager.js" />

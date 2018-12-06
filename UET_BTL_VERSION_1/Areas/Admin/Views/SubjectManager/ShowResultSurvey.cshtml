@@ -7,12 +7,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2  style="font-weight:bold;color:blue;text-align:center">Bảng đánh giá theo cả lớp </h2>
-<h4 style="font-size:20px;">Tên môn học: @Model.Subject.Name  @Model.Subject.SubjectCode</h4>
-<h4 style="font-size:20px;">Số tín chỉ: @Model.Subject.CreditNumber</h4>
-<h4 style="font-size:20px;">Tổng số sinh viên: @ViewBag.SumStudent</h4>
-<h4 style="font-size:20px;">Tên giảng viên: @Model.Teacher.Name</h4>
-<hr />
+
 @{ int k = 0; }
 @{
     if (ViewBag.hasSurvey == 0)
@@ -22,7 +17,30 @@
     else
     {
 
-        <div class="content-teacher">
+        <div class="content-teacher result-survey">
+            <h2 style="font-weight:bold;color:blue;text-align:center">Bảng đánh giá theo cả lớp </h2>
+            <h4 style="font-size:20px;">Tên môn học: @Model.Subject.Name  @Model.Subject.SubjectCode</h4>
+            <h4 style="font-size:20px;">Số tín chỉ: @Model.Subject.CreditNumber</h4>
+            <h4 style="font-size:20px;">Tổng số sinh viên: @ViewBag.SumStudent</h4>
+            <h4 style="font-size:20px;">Tên giảng viên: @Model.Teacher.Name</h4>
+            <hr />
+            <style>
+                td,th {
+                    vertical-align: middle !important;
+                    cursor: pointer;
+                    text-align: center;
+                    font-size: 15px;
+                    border: 1px solid black;
+                    color: black;
+                    text-align: center;
+                    box-sizing: border-box;
+                }
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                }
+               
+            </style>
             <div class="table-responsive">
                 <table class="table table-hover table-striped">
                     <thead style="background-color:dodgerblue;color:white;">
@@ -61,9 +79,14 @@
             </div>
         </div>
 
-        }
-
-
+        <div class="btn btn-primary printResultSurvey">In kết quả</div>
 
     }
+
+}
+
+@section scripts
+{
+    @Scripts.Render("~/subject/js")
+}
 
